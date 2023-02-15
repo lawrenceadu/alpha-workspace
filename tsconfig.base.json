@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@alpha/icons": ["libs/icons/src/index.ts"],
+      "@alpha/ui": ["libs/ui/src/index.ts"],
+      "@alpha/utils": ["libs/utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

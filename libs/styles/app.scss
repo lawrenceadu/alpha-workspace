@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import 'typography';
+}
+
+@layer components {
+  @import 'button';
+}
+
+@layer utilities {
+}
+
+@import 'flatpickr/dist/themes/airbnb.css';
