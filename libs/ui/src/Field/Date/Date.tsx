@@ -1,7 +1,7 @@
 import Flatpickr, { DateTimePickerProps } from 'react-flatpickr';
+import { Calendar } from 'react-feather';
 import { helpers } from '@alpha/utils';
 import dayjs from 'dayjs';
-import { Calendar } from 'react-feather';
 
 // eslint-disable-next-line
 export interface DateProps extends DateTimePickerProps {
