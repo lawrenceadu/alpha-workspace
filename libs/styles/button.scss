@@ -1,6 +1,10 @@
 .btn {
   &-primary {
-    @apply bg-primary text-white #{!important};
+    @apply bg-primary border-primary text-white #{!important};
+  }
+
+  &-secondary {
+    @apply bg-neutral-700 border-neutral-700 text-black #{!important};
   }
 
   &-outline {

@@ -12,6 +12,6 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   children: 'Button',
-  className: '!bg-primary !text-white',
+  className: 'btn-primary',
   isSubmitting: false,
 };

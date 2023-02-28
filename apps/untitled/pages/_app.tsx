@@ -1,6 +1,7 @@
+import { SSRProvider } from '@restart/ui/ssr';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { SSRProvider } from '@restart/ui/ssr';
+
 import './styles.scss';
 
 function CustomApp({ Component, pageProps }: AppProps) {

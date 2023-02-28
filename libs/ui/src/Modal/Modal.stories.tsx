@@ -19,11 +19,13 @@ const Template: ComponentStory<typeof Modal> = (args) => {
       </Button>
 
       <Modal {...args} show={state} onHide={() => setState(false)}>
-        <div>This is a modal</div>
+        <div className="p-6">This is a modal</div>
       </Modal>
     </>
   );
 };
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  header: 'Hello world',
+};

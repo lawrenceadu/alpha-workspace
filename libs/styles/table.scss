@@ -1,0 +1,26 @@
+table {
+  @apply text-left w-full whitespace-nowrap;
+
+  thead {
+    @apply bg-gray-50;
+
+    th {
+      @apply px-6 py-3 font-semibold;
+    }
+  }
+
+  tbody {
+    td {
+      @apply px-6 py-3 align-middle;
+    }
+  }
+
+  tr {
+    @apply border-b border-gray-200;
+
+    th,
+    td {
+      @apply h-full;
+    }
+  }
+}

@@ -41,15 +41,15 @@ export function Group({
           {label}
         </label>
       )}
-      <StyledContainer
-        disabled={disabled}
+      <div
         className={helpers.classNames(
           'rounded-lg relative',
           'flex gap-2 items-center',
-          'border border-gray-200',
+          'border-2 border-gray-200',
+          'bg-white min-h-[3rem]',
           'transition ease-in-out duration-150',
           'focus-within:border-primary focus-within:shadow-[0_0_0_4px_rgba(var(--color-primary-rgb),_0.2)]',
-          disabled && 'bg-gray-100 text-gray-500',
+          disabled && 'opacity-50 pointer-events-none',
           containerClassName
         )}
       >
@@ -62,7 +62,7 @@ export function Group({
             )}
           </>
         )}
-      </StyledContainer>
+      </div>
       <ErrorMessage
         className={helpers.classNames(`field-error`, errorClassName)}
         {...{ name, error, withFormik }}
@@ -74,26 +74,12 @@ export function Group({
 /**
  * styles
  */
-const StyledContainer = styled.div<{
-  disabled?: boolean;
-}>`
-  min-height: 3rem;
-  background-color: ${({ disabled }) =>
-    disabled ? 'var(--color-gray-100)' : '#fff'};
-  ${({ disabled }) =>
-    disabled &&
-    `
-      pointer-events: none; 
-      color: var(--color-gray-500);
-    `};
-`;
-
 const StyledGroup = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 
   &:has(small.field-error) {
     & > div {
-      border-color: var(--color-red-600);
+      border-color: var(--color-error);
     }
   }
 
