@@ -1,6 +1,5 @@
 import { isValidPhoneNumber, isPossiblePhoneNumber} from "react-phone-number-input"; // prettier-ignore
-import { string, number, mixed, array, StringSchema, NumberSchema } from 'yup'; // prettier-ignore
-import { MixedSchema } from 'yup/lib/mixed';
+import { string, number, mixed, array, StringSchema, NumberSchema,MixedSchema } from 'yup'; // prettier-ignore
 
 /**
  * regex
@@ -158,12 +157,12 @@ const requireFile = ({
     .test(
       'fileName',
       `${field} is required`,
-      (value) => !!value?.name || !required
+      (value: any) => !!value?.name || !required
     )
-    .test('fileSize', `${field} size is too large`, (value) => {
+    .test('fileSize', `${field} size is too large`, (value: any) => {
       return value?.size ? value.size <= size * 1000000 : !required;
     })
-    .test('fileType', 'Unsupported file format', (value) =>
+    .test('fileType', 'Unsupported file format', (value: any) =>
       value?.type
         ? format.length === 0
           ? true
