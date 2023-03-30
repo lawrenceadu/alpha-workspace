@@ -1,6 +1,7 @@
 import { HtmlHTMLAttributes, useState } from 'react';
 import { ChevronDown, Minus } from 'react-feather';
 import { helpers } from '@alpha/utils';
+import { motion } from 'framer-motion';
 import { v4 } from 'uuid';
 import styled from 'styled-components';
 
@@ -39,7 +40,6 @@ export default function Item({
         onClick={() => setOpen(!open)}
         aria-expanded={open ? 'true' : 'false'}
         className={helpers.classNames(
-          open && 'mb-2',
           'flex items-center justify-between w-full py-1'
         )}
       >
@@ -51,16 +51,19 @@ export default function Item({
           {open ? <Minus /> : <ChevronDown />}
         </span>
       </div>
-      <div
+      <motion.div
         id={id}
         aria-labelledby={id}
-        className={helpers.classNames(
-          open ? 'h-auto' : 'h-0',
-          'transition-[height] overflow-hidden'
-        )}
+        initial={{ height: 0, opacity: 0 }}
+        animate={{
+          height: open ? 'auto' : 0,
+          opacity: open ? 1 : 0,
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className={`overflow-hidden`}
       >
         {children}
-      </div>
+      </motion.div>
     </div>
   );
 }

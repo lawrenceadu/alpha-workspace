@@ -1,7 +1,6 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 import { SpinnerIcon } from '@alpha/icons';
 import { helpers } from '@alpha/utils';
-import styled from 'styled-components';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isSubmitting?: boolean;
