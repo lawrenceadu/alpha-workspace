@@ -2,11 +2,9 @@ const { mergeConfig } = require('vite');
 const viteTsConfigPaths = require('vite-tsconfig-paths').default;
 
 module.exports = {
+  framework: '@storybook/react-vite',
   core: { builder: '@storybook/builder-vite' },
-  stories: [
-    '../src/**/*.stories.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-essentials', 'storybook-addon-swc'],
   async viteFinal(config, { configType }) {
     return mergeConfig(config, {
@@ -15,6 +13,9 @@ module.exports = {
           root: '../../../',
         }),
       ],
+      define: {
+        'process.env': {},
+      },
     });
   },
 };

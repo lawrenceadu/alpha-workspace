@@ -1,4 +1,7 @@
 .btn {
+  @apply disabled:bg-neutral-200 disabled:text-neutral-400 #{!important};
+
+  // themes
   &-primary {
     @apply bg-primary border-primary text-white #{!important};
   }
@@ -9,5 +12,18 @@
 
   &-outline {
     @apply bg-white text-neutral-700 border-neutral-700 #{!important};
+  }
+
+  // sizes
+  &-sm {
+    @apply h-10 #{!important};
+  }
+
+  &-lg {
+    @apply h-14 #{!important};
+  }
+
+  &-xl {
+    @apply h-16 #{!important};
   }
 }

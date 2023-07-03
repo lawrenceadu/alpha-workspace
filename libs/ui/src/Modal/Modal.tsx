@@ -11,7 +11,7 @@ export interface ModalProps extends Restart.ModalProps {
   index?: number;
   header?: string;
   size?: 'sm' | 'lg' | 'xl' | 'full';
-  dialogProps: HTMLProps<HTMLDivElement>;
+  dialogProps?: HTMLProps<HTMLDivElement>;
 }
 
 export function Modal({

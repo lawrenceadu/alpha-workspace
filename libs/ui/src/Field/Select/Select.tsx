@@ -57,10 +57,15 @@ const handleValue = ({
 }: {
   isMulti?: boolean;
   value?: any | any[] | unknown;
-  options: { label?: string; value?: unknown; [x: string]: unknown }[];
+  options: { label?: string; value?: unknown; [x: string]: any }[];
 }): ISelectOption | ISelectOption[] | unknown => {
+  
+  const _options = options[0]?.options
+    ? options.map((i) => i.options).flat()
+    : options;
+
   if (isMulti) {
-    return options.filter((option) => {
+    return _options.filter((option) => {
       if (Array.isArray(value)) {
         return value.find((item: unknown) => option.value === item);
       }
@@ -68,7 +73,7 @@ const handleValue = ({
     });
   }
 
-  return options.find((option) => option.value === value) || '';
+  return _options.find((option) => option.value === value) || '';
 };
 
 export default Object.assign(Template, { handleValue });

@@ -1,16 +1,15 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'; // prettier-ignore
 
-// let store: any;
-// let logout: any;
+let store: { token?: string; [x: string]: unknown };
+let logout: () => void;
 
-// // redux stuff
-// export const injectStore = (_store: any) => {
-//   store = _store;
-// };
+export const injectStore = (_store: typeof store) => {
+  store = _store;
+};
 
-// export const injectLogout = (_logout: any) => {
-//   logout = _logout;
-// };
+export const injectLogout = (_logout: typeof logout) => {
+  logout = _logout;
+};
 
 export const http = axios.create({
   timeout: 45000,
@@ -22,16 +21,9 @@ export const http = axios.create({
 });
 
 http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  const token = (() => {
-    // if (store) {
-    //   return store.getState().user.token;
-    // }
-    return null;
-  })();
-
   if (config.headers) {
-    if (token) {
-      config.headers['authorization'] = `Bearer ${token}`;
+    if (store?.token) {
+      config.headers['authorization'] = `Bearer ${store.token}`;
     }
   }
 
@@ -43,9 +35,9 @@ http.interceptors.response.use(
   (error: AxiosError<string>) => {
     if (error.response?.status !== 500) {
       if (error.response?.status === 401) {
-        // if (store && logout) {
-        //   store.dispatch(logout());
-        // }
+        if (store && logout) {
+          logout();
+        }
       }
 
       return Promise.reject(error?.response?.data);
@@ -59,4 +51,4 @@ http.interceptors.response.use(
   }
 );
 
-export default http;
+export default Object.assign(http, { injectStore, injectLogout });

@@ -23,7 +23,7 @@ export function Checkbox({
     <label
       className={helpers.classNames(
         className,
-        'inline-flex gap-4 items-center relative cursor-pointer'
+        'inline-flex items-center relative cursor-pointer'
       )}
     >
       <Input

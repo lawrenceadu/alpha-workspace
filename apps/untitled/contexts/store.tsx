@@ -1,7 +1,11 @@
-import { Dispatch, SetStateAction, createContext, useEffect, useState } from 'react'; // prettier-ignore
+import { Dispatch, SetStateAction, createContext, useCallback, useEffect, useState } from 'react'; // prettier-ignore
+import { useSWRConfig } from 'swr';
+import { http } from '@alpha/utils';
 
-// eslint-disable-next-line
-export interface StoreInterface {}
+export interface StoreInterface {
+  token: string;
+  logout: () => void;
+}
 
 export const StoreContext = createContext<{
   store: Partial<StoreInterface>;
@@ -13,9 +17,34 @@ export const StoreContext = createContext<{
 
 const StoreProvider = ({ children }: { children: any }) => {
   /**
+   * api
+   */
+  const { mutate } = useSWRConfig();
+
+  /**
    * state
    */
-  const [store, setStore] = useState<Partial<StoreInterface>>({});
+  const [store, setStore] = useState<Partial<StoreInterface>>(() => {
+    if (typeof window !== 'undefined') {
+      const store = window.localStorage.getItem(process.env['NX_STORAGE_KEY']);
+
+      if (store) {
+        return JSON.parse(store);
+      }
+    }
+
+    return null;
+  });
+
+  /**
+   * functions
+   */
+  const logout = useCallback(() => {
+    setStore({});
+
+    mutate(() => true, undefined, { revalidate: false });
+    sessionStorage.clear();
+  }, [mutate]);
 
   /**
    * effect
@@ -27,18 +56,13 @@ const StoreProvider = ({ children }: { children: any }) => {
         JSON.stringify(store)
       );
     }
-  }, [store]);
 
-  useEffect(() => {
-    const store = window.localStorage.getItem(process.env['NX_STORAGE_KEY']);
-
-    if (store) {
-      setStore(JSON.parse(store));
-    }
-  }, []);
+    http.injectStore(store);
+    http.injectLogout(logout);
+  }, [store, logout]);
 
   return (
-    <StoreContext.Provider value={{ store, setStore }}>
+    <StoreContext.Provider value={{ store: { ...store, logout }, setStore }}>
       {children}
     </StoreContext.Provider>
   );

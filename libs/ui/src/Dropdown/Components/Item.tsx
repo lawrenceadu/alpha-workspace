@@ -1,6 +1,5 @@
 import DropdownItem, { DropdownItemProps } from '@restart/ui/DropdownItem';
 import { helpers } from '@alpha/utils';
-import styled from 'styled-components';
 
 export default function Item({
   active,
@@ -9,26 +8,16 @@ export default function Item({
   ...props
 }: DropdownItemProps) {
   return (
-    <StyledItem
+    <DropdownItem
       className={helpers.classNames(
         'hover:bg-neutral-100 transition',
+        'flex text-left items-center text-sm px-3 py-1',
         active && 'bg-neutral-100',
         className
       )}
       {...props}
     >
       {children}
-    </StyledItem>
+    </DropdownItem>
   );
 }
-
-/**
- * styles
- */
-const StyledItem = styled(DropdownItem)`
-  display: flex;
-  text-align: left;
-  align-items: center;
-  font-size: 0.875rem;
-  padding: 0.75rem 1rem;
-`;

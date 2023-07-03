@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  @import 'reboot';
   @import 'typography';
+  @import 'table';
 }
 
 @layer components {
@@ -14,3 +16,4 @@
 }
 
 @import 'flatpickr/dist/themes/airbnb.css';
+@import 'react-toastify/dist/ReactToastify.css';

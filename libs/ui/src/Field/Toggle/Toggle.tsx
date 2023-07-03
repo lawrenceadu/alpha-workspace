@@ -27,8 +27,8 @@ export function Toggle({
       )}
     >
       <Input {...props} name={name} type="checkbox" className="sr-only peer" />
-      <div className="w-[36px] h-5 bg-neutral-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:bottom-[2px] after:left-[2px] after:bg-white after:shadow-sm after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
-      {children}
+      <div className="relative w-[36px] h-5 bg-neutral-200 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:bottom-[4px] after:left-[2px] after:bg-white after:shadow-sm after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
+      <div className="select-none">{children}</div>
     </label>
   );
 }

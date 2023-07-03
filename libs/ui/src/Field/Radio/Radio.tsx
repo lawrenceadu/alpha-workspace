@@ -17,13 +17,11 @@ export function Radio({
    */
   const Input = withFormik ? Field : 'input';
 
-  console.log(props);
-
   return (
     <label
       className={helpers.classNames(
         className,
-        'inline-flex gap-4 items-center relative cursor-pointer'
+        'inline-flex items-center relative cursor-pointer'
       )}
     >
       <Input {...props} type="radio" className="sr-only peer" />
@@ -36,7 +34,7 @@ export function Radio({
           'peer-checked:border-primary peer-checked:after:bg-primary'
         )}
       />
-      <div className="text-normal text-neutral-700 select-none">{children}</div>
+      <div className="select-none">{children}</div>
     </label>
   );
 }

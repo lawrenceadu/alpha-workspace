@@ -2,7 +2,7 @@ table {
   @apply text-left w-full whitespace-nowrap;
 
   thead {
-    @apply bg-gray-50;
+    @apply bg-neutral-50;
 
     th {
       @apply px-6 py-3 font-semibold;
@@ -16,7 +16,7 @@ table {
   }
 
   tr {
-    @apply border-b border-gray-200;
+    @apply border-b border-neutral-200;
 
     th,
     td {

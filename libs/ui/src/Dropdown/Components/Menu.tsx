@@ -1,7 +1,6 @@
-import { useLayoutEffect } from 'react';
 import { UseDropdownMenuOptions, useDropdownMenu } from '@restart/ui';
 import { helpers } from '@alpha/utils';
-import styled from 'styled-components';
+import useIsomorphicEffect from '@restart/hooks/useIsomorphicEffect';
 
 export interface MenuProps extends UseDropdownMenuOptions {
   className?: string;
@@ -18,36 +17,25 @@ export const Menu = ({ role, className, children, ...rest }: MenuProps) => {
     ...rest,
   });
 
-  useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (show) popper?.update();
   }, [show]);
 
   return (
-    <StyledMenu
+    <div
       {...props}
       role={role}
       className={helpers.classNames(
         'shadow-3xl !bg-white !z-[5]',
+        'flex overflow-auto min-w-[240px] border-lg',
+        'bg-white flex-col border border-neutral-200',
         show ? '!flex' : '!hidden',
         className
       )}
     >
       {children}
-    </StyledMenu>
+    </div>
   );
 };
-
-/**
- * styles
- */
-const StyledMenu = styled.div`
-  display: flex;
-  overflow: auto;
-  min-width: 240px;
-  border-radius: 0.5rem;
-  background-color: #fff;
-  flex-direction: column;
-  border: solid 1px var(--color-neutral-200);
-`;
 
 export default Menu;
